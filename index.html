@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💌</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ffe4ec;
+            font-family: Arial, sans-serif;
+        }
+
+        .envelope {
+            position: relative;
+            width: 280px;
+            height: 180px;
+            background: #ff8fab;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 10px 25px #d6336c33;
+        }
+
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-left: 140px solid transparent;
+            border-right: 140px solid transparent;
+            border-top: 100px solid #f06595;
+            transform-origin: top;
+            transition: transform 0.7s;
+            z-index: 4;
+        }
+
+        .left, .right, .bottom {
+            position: absolute;
+            inset: 0;
+        }
+
+        .left {
+            background: #ffb3c6;
+            clip-path: polygon(0 0, 50% 55%, 0 100%);
+            z-index: 3;
+        }
+
+        .right {
+            background: #ff9ebb;
+            clip-path: polygon(100% 0, 50% 55%, 100% 100%);
+            z-index: 3;
+        }
+
+        .bottom {
+            background: #ff85a1;
+            clip-path: polygon(0 100%, 50% 48%, 100% 100%);
+            z-index: 3;
+        }
+
+        .seal {
+            position: absolute;
+            top: 65px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 38px;
+            z-index: 5;
+        }
+
+        .letter {
+            position: absolute;
+            left: 10px;
+            bottom: 5px;
+            width: 260px;
+            height: 155px;
+            background: #fffdf7;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            color: #e84378;
+            font-size: 25px;
+            font-weight: bold;
+            opacity: 0;
+            z-index: 2;
+            transition: all 1s ease;
+        }
+
+        .letter .heart {
+            font-size: 45px;
+            animation: beat 0.8s infinite;
+        }
+
+        .envelope.open .flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .envelope.open .seal {
+            opacity: 0;
+        }
+
+        .envelope.open .letter {
+            opacity: 1;
+            transform: translateY(-115px);
+            height: 230px;
+            z-index: 6;
+        }
+
+        @keyframes beat {
+            50% {
+                transform: scale(1.2);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="envelope" id="envelope" onclick="openLetter()">
+
+        <div class="letter">
+            <div>Em nhớ chị</div>
+            <div class="heart">❤️</div>
+        </div>
+
+        <div class="flap"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="bottom"></div>
+        <div class="seal">❤️</div>
+
+    </div>
+
+    <script>
+        function openLetter() {
+            document.getElementById("envelope").classList.add("open");
+        }
+    </script>
+
+</body>
+</html>
